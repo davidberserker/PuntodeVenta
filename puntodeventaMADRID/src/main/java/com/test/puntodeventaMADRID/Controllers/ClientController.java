@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.test.puntodeventaMADRID.Exceptions.ExceptionNotFound;
 import com.test.puntodeventaMADRID.JPA.ClientRepository;
 import com.test.puntodeventaMADRID.Models.Client;
 
@@ -46,7 +47,7 @@ public class ClientController {
 	public Optional<Client> getClientById(@PathVariable int id){
 		Optional<Client> client = clientRepository.findById(id);
 		if(client.isEmpty()) {
-			throw new ExceptionNotFound("*****************User not found**************");
+			throw new ExceptionNotFound("***************** Client not found**************");
 		}
 		return client;
 	}
@@ -58,24 +59,24 @@ public class ClientController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/users/{id}")
+	@PutMapping("/clients/{id}")
 	public void updateUserByID(@PathVariable int id, @Valid @RequestBody Client client) {
 		Optional<Client> clientInDb = clientRepository.findById(id);
 		
 		if(clientInDb.isEmpty()) {
-			throw new ExceptionNotFound("user not found");
+			throw new ExceptionNotFound("***************** Client not found**************");
 		}
 		
 		clientInDb.get().setName(client.getName());
 	}
 	
 	
-	@DeleteMapping("/user/{id}")
+	@DeleteMapping("/clients/{id}")
 	public void deleteUserById(@PathVariable int id) {
 		Optional<Client> clientInDb = clientRepository.findById(id);
 		
 		if(clientInDb.isEmpty()) {
-			throw new ExceptionNotFound("user not found");
+			throw new ExceptionNotFound("***************** Client not found**************");
 		}
 		clientRepository.deleteById(id);
 	}

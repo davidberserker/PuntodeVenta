@@ -1,4 +1,4 @@
-package com.test.puntodeventaMADRID.Controllers;
+package com.test.puntodeventaMADRID.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
